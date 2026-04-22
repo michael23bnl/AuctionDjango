@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Редактирование</title>
+</head>
+<body>
+    <h1>Редактировать лот</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input type="text" name="name" value="{{ lot.name }}">
+
+        <textarea name="description">{{ lot.description }}</textarea>
+
+        <input type="number" step="0.01" name="startprice" value="{{ lot.startprice }}">
+        <input type="number" step="0.01" name="reserveprice" value="{{ lot.reserveprice }}">
+
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
+
+

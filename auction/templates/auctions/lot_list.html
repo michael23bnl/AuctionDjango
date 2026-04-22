@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Title</title>
+</head>
+<body>
+    <h1>Лоты</h1>
+    <ul>
+        {% for lot in lots %}
+            <li>{{ lot.name }} - {{ lot.currentprice }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
+
+
+

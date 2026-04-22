@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Создание</title>
+</head>
+<body>
+    <h1>Создать аукцион</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Название" required>
+
+        <textarea name="description" placeholder="Описание"></textarea>
+
+        <label>Дата начала:</label>
+        <input type="datetime-local" name="startdate">
+
+        <label>Дата окончания:</label>
+        <input type="datetime-local" name="finishdate" required>
+
+        <button type="submit">Создать</button>
+    </form>
+</body>
+</html>
+
+
+
+

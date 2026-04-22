@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Title</title>
+</head>
+<body>
+    <h1>Поиск</h1>
+
+    <form method="get">
+        <input type="text" name="q" placeholder="Введите название">
+        <button type="submit">Поиск</button>
+    </form>
+
+    {% if query %}
+        <h2>Результаты для "{{ query }}"</h2>
+
+        {% if results %}
+            <ul>
+                {% for lot in results %}
+                    <li>{{ lot.name }} - {{ lot.currentprice }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Извините, ничего не найдено по Вашему запросу</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
+
+

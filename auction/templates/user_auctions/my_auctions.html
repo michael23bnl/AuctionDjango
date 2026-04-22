@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Аукционы</title>
+</head>
+<body>
+    <h1>Мои аукционы</h1>
+
+    <a href="{% url 'create_auction' %}">Создать аукцион</a>
+
+    {% if auctions %}
+        <ul>
+            {% for auction in auctions %}
+                <li>
+                    {{ auction.name }}
+                    <a href="{% url 'edit_auction' auction.id %}">Редактировать</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас пока нет аукционов</p>
+    {% endif %}
+</body>
+</html>
+
+

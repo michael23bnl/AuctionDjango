@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Главная</title>
+</head>
+<body>
+
+    {% if request.session.user_name %}
+        <p>Привет, {{ request.session.user_name }}!</p>
+        <a href="{% url 'logout' %}">Выйти</a>
+
+        <h3>Ваши лоты:</h3>
+
+        {% if user_lots %}
+            <ul>
+                {% for l in user_lots %}
+                    <li>{{ l.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>У вас нет лотов</p>
+        {% endif %}
+
+    {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+
+    <h1>Добро пожаловать на аукцион!</h1>
+
+</body>
+</html>
+
+
+

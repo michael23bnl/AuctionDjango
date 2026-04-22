@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Лоты</title>
+</head>
+<body>
+  <h1>Мои лоты</h1>
+
+  <a href="{% url 'create_lot' %}">Создать лот</a>
+
+  {% if lots %}
+      <ul>
+          {% for lot in lots %}
+              <li>
+                  {{ lot.name }} ({{ lot.currentprice }})
+                  <a href="{% url 'edit_lot' lot.id %}">Редактировать</a>
+              </li>
+          {% endfor %}
+      </ul>
+  {% else %}
+      <p>У вас нет лотов</p>
+  {% endif %}
+</body>
+</html>
+
+

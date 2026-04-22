@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Редактирование</title>
+</head>
+<body>
+    <h1>Редактировать аукцион</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input type="text" name="name" value="{{ auction.name }}">
+
+        <textarea name="description">{{ auction.description }}</textarea>
+
+        <label>Дата начала:</label>
+        <input type="datetime-local" name="startdate" value="{{ auction.startdate|date:'Y-m-d\\TH:i' }}">
+
+        <label>Дата окончания:</label>
+        <input type="datetime-local" name="finishdate" value="{{ auction.finishdate|date:'Y-m-d\\TH:i' }}">
+
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
+
+
