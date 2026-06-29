@@ -1,0 +1,45 @@
+﻿services:
+  users-postgres:
+    container_name: auction-users-postgres
+    image: postgres:16
+    ports: 
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: "usersdb"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "123"
+    volumes:
+      - auction-users-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d usersdb" ]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 2s
+      start_interval: 1s
+    
+  auctions-postgres:
+    container_name: auction-auctions-postgres
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "auctionsdb"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "123"
+    volumes:
+      - auction-auctions-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d auctionsdb" ]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 2s
+      start_interval: 1s
+    
+volumes:
+  auction-users-postgres:
+  auction-auctions-postgres:
+    
+  
+
